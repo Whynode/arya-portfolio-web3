@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* Ini adalah cara baru Tailwind v4 menggantikan tailwind.config.js */
+@theme {
+  --color-crypto-dark: #020617;
+  --color-crypto-purple: #7C3AED;
+  --color-crypto-silver: #C0C0C0;
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-neon-purple: 0 0 15px rgba(124, 58, 237, 0.5);
+  --blur-crypto: 12px;
+}
+
+@layer base {
+  body {
+    /* Menerapkan background gelap dan warna teks silver secara global */
+    @apply bg-crypto-dark text-crypto-silver antialiased min-h-screen selection:bg-crypto-purple selection:text-white;
+  }
+}
