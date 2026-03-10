@@ -1,39 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [isTouch, setIsTouch] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
-  // Mengintai pergerakan kursor pengguna secara real-time
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
   }, []);
+
+  const handleMouseMove = useCallback((e) => {
+    setMouse({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Detect hoverable elements
+    const handleOver = (e) => {
+      const target = e.target.closest('a, button, [data-hover]');
+      setIsHovering(!!target);
+    };
+    document.addEventListener('mouseover', handleOver);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseover', handleOver);
+    };
+  }, [isTouch, handleMouseMove]);
+
+  if (isTouch) return null;
 
   return (
     <>
-      {/* INTI KURSOR: Titik Neon Ungu yang sangat responsif */}
+      {/* Core dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-crypto-purple rounded-full pointer-events-none z-[9999] shadow-[0_0_15px_rgba(124,58,237,0.9)]"
-        animate={{ 
-          x: mousePosition.x - 6, // Dikurangi setengah ukuran agar posisinya tepat di ujung panah
-          y: mousePosition.y - 6 
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        animate={{
+          x: mouse.x - (isHovering ? 20 : 4),
+          y: mouse.y - (isHovering ? 20 : 4),
+          width: isHovering ? 40 : 8,
+          height: isHovering ? 40 : 8,
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.05 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 400, mass: 0.5 }}
+        style={{
+          borderRadius: '50%',
+          backgroundColor: isHovering ? 'rgba(167,139,250,0.15)' : '#a78bfa',
+          border: isHovering ? '1px solid rgba(167,139,250,0.4)' : 'none',
+        }}
       />
       
-      {/* AURA/CINCIN PARALLAX: Cincin luar yang mengikuti dengan sedikit delay (keterlambatan) */}
+      {/* Outer glow ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border border-crypto-purple/50 rounded-full pointer-events-none z-[9998]"
-        animate={{ 
-          x: mousePosition.x - 20, 
-          y: mousePosition.y - 20 
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998] border border-accent/10"
+        animate={{
+          x: mouse.x - 20,
+          y: mouse.y - 20,
+          scale: isHovering ? 1.8 : 1,
+          opacity: isHovering ? 0 : 0.5,
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.3 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
       />
     </>
   );

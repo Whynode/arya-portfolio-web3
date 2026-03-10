@@ -3,101 +3,117 @@ import { motion } from 'framer-motion';
 
 export default function Contact() {
   return (
-    <section className="py-20 lg:py-32 relative z-10" id="contact">
+    <section className="py-20 lg:py-28 relative z-10" id="contact">
+      <div className="glow-blob glow-blob-purple w-[500px] h-[500px] absolute top-[20%] left-[-5%] opacity-[0.08]"></div>
+
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 lg:mb-24"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Inisiasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-crypto-purple to-blue-400 drop-shadow-neon-purple">Kolaborasi</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/5 border border-accent/15 text-accent text-[10px] font-semibold tracking-widest mb-4">
+            GET IN TOUCH
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            Inisiasi <span className="text-gradient">Kolaborasi</span>
           </h2>
-          <p className="text-crypto-silver max-w-2xl mx-auto text-sm md:text-base">
-            Saya selalu terbuka untuk mendiskusikan peluang proyek baru, arsitektur sistem kompleks, atau sekadar bertukar pikiran mengenai tren UI/UX dan ekosistem Web3.
+          <p className="text-text-muted max-w-xl mx-auto text-sm">
+            Saya selalu terbuka untuk mendiskusikan peluang proyek baru.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-5xl mx-auto">
           
-          {/* KOLOM KIRI: Informasi Kontak */}
+          {/* Left: Info Cards */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Informasi Kredensial</h3>
+            <h3 className="text-lg font-bold text-text-primary mb-5">Informasi Kontak</h3>
             
-            {/* Kartu Email */}
-            <div className="p-6 rounded-2xl bg-glass-bg border border-glass-border backdrop-blur-crypto hover:shadow-neon-purple transition-all duration-300 flex items-center gap-5 group cursor-default">
-              <div className="w-12 h-12 rounded-full border border-crypto-purple/50 bg-crypto-purple/10 flex items-center justify-center text-crypto-purple group-hover:scale-110 transition-transform duration-300 shadow-[0_0_10px_rgba(124,58,237,0.2)]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              </div>
-              <div>
-                <p className="text-xs text-crypto-silver uppercase tracking-wider mb-1">Email Komunikasi</p>
-                <p className="text-white font-medium text-lg">arya.suhendra@workspace.dev</p>
-              </div>
-            </div>
-
-            {/* Kartu Lokasi */}
-            <div className="p-6 rounded-2xl bg-glass-bg border border-glass-border backdrop-blur-crypto hover:shadow-neon-purple transition-all duration-300 flex items-center gap-5 group cursor-default">
-              <div className="w-12 h-12 rounded-full border border-crypto-purple/50 bg-crypto-purple/10 flex items-center justify-center text-crypto-purple group-hover:scale-110 transition-transform duration-300 shadow-[0_0_10px_rgba(124,58,237,0.2)]">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              </div>
-              <div>
-                <p className="text-xs text-crypto-silver uppercase tracking-wider mb-1">Basis Operasi</p>
-                <p className="text-white font-medium text-lg">Indonesia (Sistem Remote)</p>
-              </div>
-            </div>
+            {[
+              { 
+                label: 'Email', value: 'arya.suhendra@workspace.dev', color: 'text-accent',
+                icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              },
+              {
+                label: 'Lokasi', value: 'Indonesia (Remote)', color: 'text-accent',
+                icon: <><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></>
+              },
+              {
+                label: 'Status', value: 'Tersedia untuk Kolaborasi', color: 'text-emerald-400',
+                icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
+                iconColor: 'text-emerald-400', bgColor: 'bg-emerald-400/10', borderColor: 'border-emerald-400/20'
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="glass-card-interactive p-5 rounded-2xl flex items-center gap-4 group cursor-default"
+              >
+                <div className={`w-11 h-11 rounded-xl ${item.bgColor || 'bg-accent/10'} border ${item.borderColor || 'border-accent/20'} flex items-center justify-center ${item.iconColor || 'text-accent'} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">{item.icon}</svg>
+                </div>
+                <div>
+                  <p className="text-[10px] text-text-muted uppercase tracking-widest mb-0.5">{item.label}</p>
+                  <p className={`${item.color} font-medium text-sm`}>{item.value}</p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
-          {/* KOLOM KANAN: Formulir Komunikasi */}
+          {/* Right: Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <form className="p-8 md:p-10 rounded-3xl bg-glass-bg border border-glass-border backdrop-blur-crypto shadow-[0_0_30px_rgba(0,0,0,0.5)] flex flex-col gap-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Input Nama */}
-                <div className="relative group">
-                  <input type="text" id="name" required className="w-full bg-transparent border-b border-glass-border py-2 text-white outline-none focus:border-crypto-purple transition-colors duration-300 peer placeholder-transparent" placeholder="Nama Anda" />
-                  <label htmlFor="name" className="absolute left-0 top-2 text-crypto-silver text-sm transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-crypto-purple peer-valid:-top-5 peer-valid:text-xs peer-valid:text-crypto-purple">Identitas / Nama Anda</label>
-                </div>
-                {/* Input Email */}
-                <div className="relative group">
-                  <input type="email" id="email" required className="w-full bg-transparent border-b border-glass-border py-2 text-white outline-none focus:border-crypto-purple transition-colors duration-300 peer placeholder-transparent" placeholder="Email" />
-                  <label htmlFor="email" className="absolute left-0 top-2 text-crypto-silver text-sm transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-crypto-purple peer-valid:-top-5 peer-valid:text-xs peer-valid:text-crypto-purple">Alamat Email</label>
-                </div>
+            <form 
+              className="glass-card p-7 md:p-8 rounded-2xl flex flex-col gap-5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target;
+                const name = form.elements['name'].value;
+                const email = form.elements['email'].value;
+                const subject = form.elements['subject'].value;
+                const message = form.elements['message'].value;
+                window.open(`mailto:arya.suhendra@workspace.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Dari: ${name} (${email})\n\n${message}`)}`, '_self');
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input name="name" type="text" required className="w-full bg-bg-primary/60 border border-glass-border rounded-xl px-4 py-3.5 text-text-primary text-sm outline-none transition-all duration-500 placeholder:text-text-dim focus:border-accent/40 focus:shadow-[0_0_20px_rgba(167,139,250,0.08)]" placeholder="Nama Anda" />
+                <input name="email" type="email" required className="w-full bg-bg-primary/60 border border-glass-border rounded-xl px-4 py-3.5 text-text-primary text-sm outline-none transition-all duration-500 placeholder:text-text-dim focus:border-accent/40 focus:shadow-[0_0_20px_rgba(167,139,250,0.08)]" placeholder="Alamat Email" />
               </div>
 
-              {/* Input Subjek */}
-              <div className="relative group">
-                <input type="text" id="subject" required className="w-full bg-transparent border-b border-glass-border py-2 text-white outline-none focus:border-crypto-purple transition-colors duration-300 peer placeholder-transparent" placeholder="Subjek" />
-                <label htmlFor="subject" className="absolute left-0 top-2 text-crypto-silver text-sm transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-crypto-purple peer-valid:-top-5 peer-valid:text-xs peer-valid:text-crypto-purple">Subjek Diskusi</label>
-              </div>
+              <input name="subject" type="text" required className="w-full bg-bg-primary/60 border border-glass-border rounded-xl px-4 py-3.5 text-text-primary text-sm outline-none transition-all duration-500 placeholder:text-text-dim focus:border-accent/40 focus:shadow-[0_0_20px_rgba(167,139,250,0.08)]" placeholder="Subjek" />
 
-              {/* Input Pesan */}
-              <div className="relative group">
-                <textarea id="message" rows="4" required className="w-full bg-transparent border-b border-glass-border py-2 text-white outline-none focus:border-crypto-purple transition-colors duration-300 peer placeholder-transparent resize-none" placeholder="Pesan"></textarea>
-                <label htmlFor="message" className="absolute left-0 top-2 text-crypto-silver text-sm transition-all duration-300 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-crypto-purple peer-valid:-top-5 peer-valid:text-xs peer-valid:text-crypto-purple">Pesan atau Deskripsi Proyek</label>
-              </div>
+              <textarea name="message" rows={4} required className="w-full bg-bg-primary/60 border border-glass-border rounded-xl px-4 py-3.5 text-text-primary text-sm outline-none resize-none transition-all duration-500 placeholder:text-text-dim focus:border-accent/40 focus:shadow-[0_0_20px_rgba(167,139,250,0.08)]" placeholder="Pesan atau Deskripsi Proyek" />
 
-              {/* Tombol Kirim */}
-              <button type="button" className="mt-4 w-full py-4 rounded-xl bg-crypto-purple text-white font-bold tracking-wider hover:bg-purple-600 transition-all shadow-neon-purple duration-300 flex justify-center items-center gap-3">
-                Kirim Transmisi
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </button>
+              <motion.button 
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 rounded-xl bg-accent text-bg-primary font-bold text-sm hover:shadow-glow-strong transition-all duration-500 flex items-center justify-center gap-2 cursor-pointer"
+                data-hover
+              >
+                Kirim Pesan
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+              </motion.button>
             </form>
           </motion.div>
-
         </div>
       </div>
     </section>
